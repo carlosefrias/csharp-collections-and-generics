@@ -74,25 +74,25 @@ namespace Acme.Biz.Tests
             Assert.AreEqual(expected.Result, actual.Result);
             Assert.AreEqual(expected.Message, actual.Message);
         }
-        [TestMethod()]
-        public void PlaceOrder_3Parameters()
-        {
-            // Arrange
-            var vendor = new Vendor();
-            var product = new Product(1, "Saw", "");
-            var expected = new OperationResult<bool>(true,
-                "Order from Acme, Inc\r\nProduct: Saw\r\nQuantity: 12" +
-                "\r\nDeliver By: " + new DateTime(2018,10,25).ToString("d") +
-                "\r\nInstructions: standard delivery");
+        //[TestMethod()]
+        //public void PlaceOrder_3Parameters()
+        //{
+        //    // Arrange
+        //    var vendor = new Vendor();
+        //    var product = new Product(1, "Saw", "");
+        //    var expected = new OperationResult<bool>(true,
+        //        "Order from Acme, Inc\r\nProduct: Saw\r\nQuantity: 12" +
+        //        "\r\nDeliver By: " + new DateTime(2018,10,25).ToString("d") +
+        //        "\r\nInstructions: standard delivery");
 
-            // Act
-            var actual = vendor.PlaceOrder(product, 12,
-                new DateTimeOffset(2018, 10, 25, 0, 0, 0, new TimeSpan(-7, 0, 0)));
+        //    // Act
+        //    var actual = vendor.PlaceOrder(product, 12,
+        //        new DateTimeOffset(2018, 10, 25, 0, 0, 0, new TimeSpan(-7, 0, 0)));
 
-            // Assert
-            Assert.AreEqual(expected.Result, actual.Result);
-            Assert.AreEqual(expected.Message, actual.Message);
-        }
+        //    // Assert
+        //    Assert.AreEqual(expected.Result, actual.Result);
+        //    Assert.AreEqual(expected.Message, actual.Message);
+        //}
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]
