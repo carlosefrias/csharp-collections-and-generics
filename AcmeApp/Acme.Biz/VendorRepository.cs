@@ -49,60 +49,29 @@ namespace Acme.Biz
 
             return success;
         }
-        public List<Vendor> Retrieve()
+        
+        public IEnumerable<Vendor> Retrieve()
         {
             if(vendors == null)
             {
                 vendors = new List<Vendor>();
                 vendors.Add(new Vendor() { VendorId = 1, CompanyName = "ABC Corp", Email = "abc@abc.com" });
-                vendors.Add(new Vendor() { VendorId = 1, CompanyName = "XYZ Inc", Email = "xyz@xyz.com" });
+                vendors.Add(new Vendor() { VendorId = 2, CompanyName = "XYZ Inc", Email = "xyz@xyz.com" });
             }
-            //for (int i = 0; i < vendors.Count; i++)
-            //{
-            //    Console.WriteLine(vendors[i]);
-            //}
             foreach (var vendor in vendors)
             {
                 Console.WriteLine(vendor);
             }
             return vendors;
         }
-        public Dictionary<string, Vendor> RetrieveWithKeys()
+        public IEnumerable<Vendor> RetrieveWithIterator()
         {
-            var vendors = new Dictionary<string, Vendor>()
+            Retrieve();
+            foreach (var vendor in vendors)
             {
-                {"ABC Corp", new Vendor()
-                    { VendorId = 1, CompanyName = "ABC Corp", Email = "abc@abc.com" }
-                },
-                {"XYZ Inc",  new Vendor()
-                    { VendorId = 1, CompanyName = "XYZ Inc", Email = "xyz@xyz.com" }
-                }
-            };
-            foreach (var element in vendors)
-            {
-                var vendor = element.Value;
-                var key = element.Key;
-                Console.WriteLine($"Key: {key}\nVendor: {vendor}");
+                Console.WriteLine($"Vendor Id: {vendor.VendorId}");
+                yield return vendor;
             }
-            //foreach (var vendor in vendors.Values)
-            //{
-            //    Console.WriteLine(vendor);
-            //}
-            //Console.WriteLine(vendors["XYZ Inc"]);
-            //if (vendors.ContainsKey("XYZ"))
-            //{
-            //    Console.WriteLine(vendors["XYZ"]);
-            //}
-            //Vendor vendor;
-            //if(vendors.TryGetValue("XYZ", out vendor))
-            //{
-            //    Console.WriteLine(vendor);
-            //}
-            //foreach (var companyName in vendors.Keys)
-            //{
-            //    Console.WriteLine(vendors[companyName]);
-            //}
-            return vendors;
         }
     }
 }
